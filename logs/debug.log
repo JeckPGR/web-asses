@@ -1,0 +1,618 @@
+[2024-08-22 10:47:06] Nikto Output:
+'nikto' is not recognized as an internal or external command,
+operable program or batch file.
+
+SQLMap Output:
+'sqlmap' is not recognized as an internal or external command,
+operable program or batch file.
+
+Wapiti Output:
+'wapiti' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-22 11:39:00] Wapiti Output:
+'wapiti' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-22 11:41:37] Wapiti Output:
+'wapiti' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-22 11:47:06] Wapiti Output:
+'wapiti' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-22 11:48:09] Wapiti Output:
+'wapiti' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-22 11:54:37] Wapiti Output:
+usage: wapiti [-h] [-u URL] [--swagger URI] [--data data]
+              [--scope {url,page,folder,subdomain,domain,punk}]
+              [-m MODULES_LIST] [--list-modules] [-l LEVEL] [-p PROXY_URL]
+              [--tor] [--mitm-port PORT] [--headless {no,hidden,visible}]
+              [--wait TIME] [-a CREDENTIALS] [--auth-user USERNAME]
+              [--auth-password PASSWORD] [--auth-method {basic,digest,ntlm}]
+              [--form-cred CREDENTIALS] [--form-user USERNAME]
+              [--form-password PASSWORD] [--form-url URL] [--form-data DATA]
+              [--form-enctype DATA] [--form-script FILENAME] [-c COOKIE_FILE]
+              [-C COOKIE_VALUE] [--drop-set-cookie] [--skip-crawl]
+              [--resume-crawl] [--flush-attacks] [--flush-session]
+              [--store-session PATH] [--store-config PATH] [-s URL] [-x URL]
+              [-r PARAMETER] [--skip PARAMETER] [-d DEPTH]
+              [--max-links-per-page MAX] [--max-files-per-dir MAX]
+              [--max-scan-time SECONDS] [--max-attack-time SECONDS]
+              [--max-parameters MAX] [-S FORCE] [--tasks tasks]
+              [--external-endpoint EXTERNAL_ENDPOINT_URL]
+              [--internal-endpoint INTERNAL_ENDPOINT_URL]
+              [--endpoint ENDPOINT_URL] [--dns-endpoint DNS_ENDPOINT_DOMAIN]
+              [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]
+              [--color] [-v LEVEL] [--log OUTPUT_PATH] [-f FORMAT]
+              [-o OUTPUT_PATH] [-dr DETAILED_REPORT_LEVEL] [--no-bugreport]
+              [--update] [--version] [--cms CMS_LIST] [--wapp-url WAPP_URL]
+              [--wapp-dir WAPP_DIR]
+wapiti: error: one of the arguments -u/--url --list-modules --update is required
+
+     __      __               .__  __  .__________
+    /  \    /  \_____  ______ |__|/  |_|__\_____  \
+    \   \/\/   /\__  \ \____ \|  \   __\  | _(__  <
+     \        /  / __ \|  |_> >  ||  | |  |/       \
+      \__/\  /  (____  /   __/|__||__| |__/______  /
+           \/        \/|__|                      \/
+Wapiti 3.2.0 (wapiti-scanner.github.io)
+
+[2024-08-22 11:56:31] Wapiti Output:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Scripts\wapiti.exe\__main__.py", line 7, in <module>
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\site-packages\wapitiCore\main\wapiti.py", line 502, in wapiti_asyncio_wrapper
+    asyncio.run(wapiti_main())
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\site-packages\wapitiCore\main\wapiti.py", line 124, in wapiti_main
+    print_banner()
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\site-packages\wapitiCore\main\banners.py", line 51, in print_banner
+    print(choice(banners))
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 3-5: character maps to <undefined>
+
+[2024-08-22 11:56:45] Wapiti Output:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Scripts\wapiti.exe\__main__.py", line 7, in <module>
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\site-packages\wapitiCore\main\wapiti.py", line 502, in wapiti_asyncio_wrapper
+    asyncio.run(wapiti_main())
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\site-packages\wapitiCore\main\wapiti.py", line 476, in wapiti_main
+    loop.add_signal_handler(signal.SIGINT, inner_ctrl_c_signal_handler)
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python312\Lib\asyncio\events.py", line 582, in add_signal_handler
+    raise NotImplementedError
+NotImplementedError
+
+     __    __            _ _   _ _____
+    / / /\ \ \__ _ _ __ (_) |_(_)___ /
+    \ \/  \/ / _` | '_ \| | __| | |_ \
+     \  /\  / (_| | |_) | | |_| |___) |
+      \/  \/ \__,_| .__/|_|\__|_|____/
+                  |_|                 
+Wapiti 3.2.0 (wapiti-scanner.github.io)
+
+[2024-08-26 07:20:56] Wapiti Output:
+The system cannot find the path specified.
+
+[2024-08-26 07:21:40] Wapiti Output:
+The system cannot find the path specified.
+
+[2024-08-26 07:39:26] Wapiti Output:
+'wapiti' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-26 07:41:16] Wapiti Output:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\Scripts\wapiti.exe\__main__.py", line 7, in <module>
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 502, in wapiti_asyncio_wrapper
+    asyncio.run(wapiti_main())
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 124, in wapiti_main
+    print_banner()
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\banners.py", line 51, in print_banner
+    print(choice(banners))
+  File "C:\Program Files\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 3-5: character maps to <undefined>
+
+[2024-08-26 07:43:03] Wapiti Output:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\Scripts\wapiti.exe\__main__.py", line 7, in <module>
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 502, in wapiti_asyncio_wrapper
+    asyncio.run(wapiti_main())
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 476, in wapiti_main
+    loop.add_signal_handler(signal.SIGINT, inner_ctrl_c_signal_handler)
+  File "C:\Program Files\Python312\Lib\asyncio\events.py", line 582, in add_signal_handler
+    raise NotImplementedError
+NotImplementedError
+
+ ██╗    ██╗ █████╗ ██████╗ ██╗████████╗██╗██████╗
+ ██║    ██║██╔══██╗██╔══██╗██║╚══██╔══╝██║╚════██╗
+ ██║ █╗ ██║███████║██████╔╝██║   ██║   ██║ █████╔╝
+ ██║███╗██║██╔══██║██╔═══╝ ██║   ██║   ██║ ╚═══██╗
+ ╚███╔███╔╝██║  ██║██║     ██║   ██║   ██║██████╔╝
+  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   ╚═╝╚═════╝  
+Wapiti 3.2.0 (wapiti-scanner.github.io)
+
+[2024-08-26 07:45:59] Wapiti Command: python -m wapiti -u "https://telkomuniversity.ac.id" -f json -o "C:\tmp\wapiti_report.json"
+Wapiti Output:
+C:\Program Files\Python312\python.exe: No module named wapiti
+
+[2024-08-26 07:48:47] Wapiti Command: C:\Program Files\Python312\python.exe C:\Users\asus\AppData\Roaming\Python\Python312\Scripts\wapiti.exe -u "https://telkomuniversity.ac.id" -f json -o "C:\tmp\wapiti_report.json"
+Wapiti Output:
+'C:\Program' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-26 07:49:57] Wapiti Output:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\Scripts\wapiti.exe\__main__.py", line 7, in <module>
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 502, in wapiti_asyncio_wrapper
+    asyncio.run(wapiti_main())
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 476, in wapiti_main
+    loop.add_signal_handler(signal.SIGINT, inner_ctrl_c_signal_handler)
+  File "C:\Program Files\Python312\Lib\asyncio\events.py", line 582, in add_signal_handler
+    raise NotImplementedError
+NotImplementedError
+
+     __      __               .__  __  .__________
+    /  \    /  \_____  ______ |__|/  |_|__\_____  \
+    \   \/\/   /\__  \ \____ \|  \   __\  | _(__  <
+     \        /  / __ \|  |_> >  ||  | |  |/       \
+      \__/\  /  (____  /   __/|__||__| |__/______  /
+           \/        \/|__|                      \/
+Wapiti 3.2.0 (wapiti-scanner.github.io)
+
+[2024-08-26 07:59:22] Wapiti Command: "C:\Users\asus\run_wapiti.bat" "https://telkomuniversity.ac.id" "C:\tmp\wapiti_report.json"
+Wapiti Output:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\Scripts\wapiti.exe\__main__.py", line 7, in <module>
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 502, in wapiti_asyncio_wrapper
+    asyncio.run(wapiti_main())
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 124, in wapiti_main
+    print_banner()
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\banners.py", line 51, in print_banner
+    print(choice(banners))
+  File "C:\Program Files\Python312\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 3-5: character maps to <undefined>
+
+[2024-08-26 08:49:37] Wapiti Command: "C:\Users\asus\run_wapiti.bat" "https://telkomuniversity.ac.id" "C:\tmp\wapiti_report.json"
+Wapiti Output:
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\Scripts\wapiti.exe\__main__.py", line 7, in <module>
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 502, in wapiti_asyncio_wrapper
+    asyncio.run(wapiti_main())
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\asus\AppData\Roaming\Python\Python312\site-packages\wapitiCore\main\wapiti.py", line 476, in wapiti_main
+    loop.add_signal_handler(signal.SIGINT, inner_ctrl_c_signal_handler)
+  File "C:\Program Files\Python312\Lib\asyncio\events.py", line 582, in add_signal_handler
+    raise NotImplementedError
+NotImplementedError
+
+     __    __            _ _   _ _____
+    / / /\ \ \__ _ _ __ (_) |_(_)___ /
+    \ \/  \/ / _` | '_ \| | __| | |_ \
+     \  /\  / (_| | |_) | | |_| |___) |
+      \/  \/ \__,_| .__/|_|\__|_|____/
+                  |_|                 
+Wapiti 3.2.0 (wapiti-scanner.github.io)
+
+[2024-08-26 09:04:12] Wapiti Command: "C:\Users\asus\run_wapiti.bat" "https://telkomuniversity.ac.id" "C:\tmp\wapiti_report.json"
+Wapiti Output:
+The system cannot find the path specified.
+
+[2024-08-28 09:46:28] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 14:45 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0086s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 86.25 seconds
+
+[2024-08-28 09:49:25] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 14:47 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.010s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 86.01 seconds
+
+[2024-08-28 09:54:03] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 14:52 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0070s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 86.17 seconds
+
+[2024-08-28 10:03:10] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 15:01 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0058s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   open     https
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  open     asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 93.57 seconds
+
+[2024-08-28 10:03:10] Nikto Command: nikto -h "https://telkomuniversity.ac.id" -o "C:\tmp\nikto_report.txt"
+Nikto Output:
+'nikto' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-28 10:21:05] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 15:19 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0092s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 86.17 seconds
+
+[2024-08-28 10:21:05] Nikto Command: perl nikto -h "https://telkomuniversity.ac.id" -o "C:\tmp\nikto_report.txt"
+Nikto Output:
+'perl' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-28 10:27:05] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 15:25 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0078s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 86.96 seconds
+
+[2024-08-28 10:27:05] Nikto Command: perl nikto.pl -h "https://telkomuniversity.ac.id" -o "C:\tmp\nikto_report.txt"
+Nikto Output:
+'perl' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-28 10:30:10] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 15:28 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0077s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 87.35 seconds
+
+[2024-08-28 10:30:10] Nikto Command: perl nikto.pl -h "https://telkomuniversity.ac.id" -o "C:\tmp\nikto_report.txt"
+Nikto Output:
+'perl' is not recognized as an internal or external command,
+operable program or batch file.
+
+[2024-08-28 10:36:15] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 15:34 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0047s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 90.89 seconds
+
+[2024-08-28 10:36:15] Nikto Command: perl nikto.pl -h "https://telkomuniversity.ac.id" -o "C:\tmp\nikto_report.txt"
+Nikto Output:
+Can't open perl script "nikto.pl": No such file or directory
+
+[2024-08-28 10:41:16] Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
+Nmap Output:
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-08-28 15:39 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (10.252.252.56)
+Host is up (0.0077s latency).
+Not shown: 980 closed tcp ports (reset)
+PORT      STATE    SERVICE
+53/tcp    filtered domain
+80/tcp    open     http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+81/tcp    filtered hosts2-ns
+389/tcp   filtered ldap
+443/tcp   filtered https
+993/tcp   filtered imaps
+995/tcp   filtered pop3s
+1433/tcp  filtered ms-sql-s
+1521/tcp  filtered oracle
+2200/tcp  filtered ici
+2222/tcp  filtered EtherNetIP-1
+2251/tcp  filtered dif-port
+2260/tcp  filtered apc-2260
+2288/tcp  filtered netml
+2500/tcp  filtered rtsserv
+7800/tcp  filtered asr
+8080/tcp  filtered http-proxy
+8181/tcp  filtered intermapper
+8443/tcp  filtered https-alt
+10001/tcp filtered scp-config
+
+Nmap done: 1 IP address (1 host up) scanned in 87.47 seconds
+
+[2024-08-28 10:41:16] Nikto Command: perl "C:\Users\asus\Downloads\nikto\nikto\program\nikto.pl" -h "https://telkomuniversity.ac.id" -o "C:\tmp\nikto_report.txt"
+Nikto Output:
+- Nikto v2.5.0
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
++ Unable to connect to telkomuniversity.ac.id:443.
++ 0 host(s) tested
+
+[2024-08-28 16:48:18] Request received: POST method[2024-08-28 16:48:18] Valid URL: https://telkomuniversity.ac.id[2024-08-28 16:48:18] Executing Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"[2024-08-28 18:10:15] Request received: POST method[2024-08-28 18:10:15] Valid URL: https://telkomuniversity.ac.id[2024-08-28 18:10:15] Executing Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"[2024-08-28 18:28:15] Request received: POST method[2024-08-28 18:28:15] Valid URL: https://telkomuniversity.ac.id[2024-08-28 18:28:15] Executing Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"[2024-08-28 18:50:16] Request received: POST method[2024-08-28 18:50:16] Valid URL: https://telkomuniversity.ac.id[2024-08-28 18:50:16] Executing Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"[2024-08-28 19:06:52] Request received: POST method[2024-08-28 19:06:52] Valid URL: https://telkomuniversity.ac.id[2024-08-28 19:06:52] Executing Nmap Command: nmap --script vuln -oN "C:\tmp\nmap_report.txt" "telkomuniversity.ac.id"
