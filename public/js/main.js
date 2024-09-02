@@ -26,10 +26,10 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
         },
         body: `url=${encodeURIComponent(url)}`,
     })
-    .then(response => response.text()) // Use text() instead of json() to handle non-JSON responses
+    .then(response => response.text()) // Use .text() to get raw response
     .then(text => {
         try {
-            const data = JSON.parse(text); // Attempt to parse the JSON
+            const data = JSON.parse(text); // Attempt to parse JSON
             if (data.status === 'error') {
                 console.error(data.message);
                 resultsDiv.innerHTML = data.message;
@@ -38,8 +38,8 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
                 resultsDiv.innerHTML = `<p>${data.message}</p>`;
             }
         } catch (error) {
-            // Handle JSON parsing errors
             console.error('Parsing error:', error);
+            console.error('Server response:', text); // Log the raw response for debugging
             resultsDiv.innerHTML = `Error: Invalid response from server.`;
         }
     })
@@ -47,5 +47,6 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
         console.error('Fetch error:', error);
         resultsDiv.innerHTML = `Error: ${error}`;
     });
+    
     
 });

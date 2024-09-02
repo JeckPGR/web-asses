@@ -1,86 +1,138 @@
 <?php
-
-// PHP settings to suppress error display
+// Strict error reporting for development
 ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    error_log("[" . date('Y-m-d H:i:s') . "] Request received: POST method", 3, __DIR__ . '/../../logs/debug.log');
+// Increase execution time limit for long-running scans
+set_time_limit(300);
 
-    $url = filter_var($_POST['url'], FILTER_SANITIZE_URL);
+// Function to safely log messages
+function safeLog($message, $logFile = 'debug.log') {
+    $logDir = __DIR__ . '/../../logs/';
+    if (!file_exists($logDir)) {
+        mkdir($logDir, 0755, true);
+    }
+    error_log("[" . date('Y-m-d H:i:s') . "] " . $message . "\n", 3, $logDir . $logFile);
+}
 
-    // Tambahkan "https://" jika tidak ada skema
-    if (!preg_match('/^https?:\/\//', $url)) {
-        $url = 'https://' . $url;
+// Function to send JSON response
+function sendJsonResponse($status, $message) {
+    header('Content-Type: application/json');
+    echo json_encode(['status' => $status, 'message' => $message]);
+    exit;
+}
+
+// Main logic wrapped in a try-catch block
+try {
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        throw new Exception("Method not allowed!");
     }
 
-    // Validasi URL
+    safeLog("Request received: POST method");
+
+    $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
+    if (!$url) {
+        throw new Exception("No URL provided");
+    }
+
+    // Add scheme if missing
+    if (!preg_match('~^(?:f|ht)tps?://~i', $url)) {
+        $url = "https://" . $url;
+    }
+
+    safeLog("Starting scan...");
+
     if (!filter_var($url, FILTER_VALIDATE_URL)) {
-        error_log("[" . date('Y-m-d H:i:s') . "] Invalid URL provided: $url", 3, __DIR__ . '/../../logs/debug.log');
-        echo json_encode(['status' => 'error', 'message' => "Invalid URL! Please ensure your URL is in the correct format, e.g., example.com or https://example.com."]);
-        exit;
+        throw new Exception("Invalid URL format");
     }
 
-    error_log("[" . date('Y-m-d H:i:s') . "] Valid URL: $url", 3, __DIR__ . '/../../logs/debug.log');
+    safeLog("Valid URL: $url");
 
-    // Mengambil hostname dari URL
-    $parsed_url = parse_url($url);
-    $hostname = $parsed_url['host'];
+    $parsedUrl = parse_url($url);
+    $hostname = $parsedUrl['host'];
 
-    // Tentukan direktori output untuk laporan Nmap dan Nikto
-    $output_dir = 'C:\\tmp\\';
-    if (!file_exists($output_dir)) {
-        if (!mkdir($output_dir, 0777, true)) {
-            error_log("[" . date('Y-m-d H:i:s') . "] Failed to create output directory: $output_dir", 3, __DIR__ . '/../../logs/debug.log');
-            echo json_encode(['status' => 'error', 'message' => "Failed to create output directory."]);
-            exit;
-        }
-        error_log("[" . date('Y-m-d H:i:s') . "] Output directory created: $output_dir", 3, __DIR__ . '/../../logs/debug.log');
+    // Use system temp directory and generate unique filename
+    $outputDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'vulnerability_scan_' . uniqid() . DIRECTORY_SEPARATOR;
+    if (!mkdir($outputDir, 0755, true)) {
+        throw new Exception("Failed to create output directory");
     }
 
-    // Jalankan Nmap untuk memindai kerentanan
-    $nmap_output_file = $output_dir . 'nmap_report.txt';
-    $nmap_command = "nmap --script vuln -oN " . escapeshellarg($nmap_output_file) . " " . escapeshellarg($hostname);
-    error_log("[" . date('Y-m-d H:i:s') . "] Executing Nmap Command: $nmap_command", 3, __DIR__ . '/../../logs/debug.log');
-    $nmap_output = shell_exec($nmap_command . " 2>&1");
-    error_log("[" . date('Y-m-d H:i:s') . "] Nmap Output: $nmap_output", 3, __DIR__ . '/../../logs/debug.log');
+    safeLog("Output directory created: $outputDir");
 
-    // Periksa apakah file hasil Nmap ada
-    if (file_exists($nmap_output_file)) {
-        $nmap_report = file_get_contents($nmap_output_file);
-        error_log("[" . date('Y-m-d H:i:s') . "] Nmap report generated successfully.", 3, __DIR__ . '/../../logs/debug.log');
-        error_log("[" . date('Y-m-d H:i:s') . "] Nmap Report Content: $nmap_report", 3, __DIR__ . '/../../logs/debug.log');
-    } else {
-        $nmap_report = 'No Nmap report generated.';
-        error_log("[" . date('Y-m-d H:i:s') . "] Nmap report not generated.", 3, __DIR__ . '/../../logs/debug.log');
+    // Nmap scan
+    $nmapOutputFile = $outputDir . 'nmap_report.txt';
+    $nmapCommand = "nmap --script vuln -oN " . escapeshellarg($nmapOutputFile) . " " . escapeshellarg($hostname);
+    
+    safeLog("Executing Nmap Command: $nmapCommand");
+    $nmapOutput = shell_exec($nmapCommand . " 2>&1");
+    
+    if ($nmapOutput === null) {
+        throw new Exception("Nmap execution failed");
+    }
+    
+    safeLog("Nmap Output: " . substr($nmapOutput, 0, 1000) . "...");  // Log only first 1000 characters
+
+    if (!file_exists($nmapOutputFile)) {
+        throw new Exception("Nmap report not generated");
     }
 
-    // Tentukan path penuh untuk skrip Nikto
-    $nikto_path = 'C:\\Users\\asus\\Downloads\\nikto\\nikto\\program\\nikto.pl';
-    $nikto_output_file = $output_dir . 'nikto_report.txt';
-    $nikto_command = "perl " . escapeshellarg($nikto_path) . " -h " . escapeshellarg($url) . " -o " . escapeshellarg($nikto_output_file);
-    error_log("[" . date('Y-m-d H:i:s') . "] Executing Nikto Command: $nikto_command", 3, __DIR__ . '/../../logs/debug.log');
-    $nikto_output = shell_exec($nikto_command . " 2>&1");
-    error_log("[" . date('Y-m-d H:i:s') . "] Nikto Output: $nikto_output", 3, __DIR__ . '/../../logs/debug.log');
+    $nmapReport = file_get_contents($nmapOutputFile);
+    safeLog("Nmap report generated successfully.");
 
-    // Periksa apakah file hasil Nikto ada
-    if (file_exists($nikto_output_file)) {
-        $nikto_report = file_get_contents($nikto_output_file);
-        error_log("[" . date('Y-m-d H:i:s') . "] Nikto report generated successfully.", 3, __DIR__ . '/../../logs/debug.log');
-        error_log("[" . date('Y-m-d H:i:s') . "] Nikto Report Content: $nikto_report", 3, __DIR__ . '/../../logs/debug.log');
-    } else {
-        $nikto_report = 'No Nikto report generated.';
-        error_log("[" . date('Y-m-d H:i:s') . "] Nikto report not generated.", 3, __DIR__ . '/../../logs/debug.log');
+    // Nikto scan
+    $niktoPath = 'C:\\Users\\asus\\Downloads\\nikto\\nikto\\program\\nikto.pl';
+    $niktoOutputFile = $outputDir . 'nikto_report.txt';
+    $niktoCommand = "perl " . escapeshellarg($niktoPath) . " -h " . escapeshellarg($url) . " -o " . escapeshellarg($niktoOutputFile);
+    
+    safeLog("Executing Nikto Command: $niktoCommand");
+    $niktoOutput = shell_exec($niktoCommand . " 2>&1");
+    
+    if ($niktoOutput === null) {
+        throw new Exception("Nikto execution failed");
+    }
+    
+    safeLog("Nikto Output: " . substr($niktoOutput, 0, 1000) . "...");  // Log only first 1000 characters
+
+    if (!file_exists($niktoOutputFile)) {
+        throw new Exception("Nikto report not generated");
     }
 
-    // Kirim pesan ringkas ke klien dan log detail lengkap
-    echo json_encode([
-        'status' => 'success',
-        'message' => "Vulnerabilities found for $hostname."
-    ]);
-} else {
-    error_log("[" . date('Y-m-d H:i:s') . "] Invalid request method: " . $_SERVER['REQUEST_METHOD'], 3, __DIR__ . '/../../logs/debug.log');
-    echo json_encode(['status' => 'error', 'message' => "Method not allowed!"]);
+    $niktoReport = file_get_contents($niktoOutputFile);
+    safeLog("Nikto report generated successfully.");
+
+    // Process and analyze the reports here
+    // This is a placeholder for actual vulnerability analysis
+    $vulnerabilities = analyzeReports($nmapReport, $niktoReport);
+
+    // Clean up temporary files
+    unlink($nmapOutputFile);
+    unlink($niktoOutputFile);
+    rmdir($outputDir);
+
+    sendJsonResponse('success', "Scan completed for $hostname. " . count($vulnerabilities) . " potential vulnerabilities found.");
+
+} catch (Exception $e) {
+    safeLog("Error: " . $e->getMessage(), 'error.log');
+    sendJsonResponse('error', "An error occurred: " . $e->getMessage());
+}
+
+// Function to analyze reports and return vulnerabilities
+function analyzeReports($nmapReport, $niktoReport) {
+    $vulnerabilities = [];
+
+    // Placeholder for Nmap report analysis
+    if (strpos($nmapReport, 'VULNERABLE') !== false) {
+        $vulnerabilities[] = "Potential vulnerabilities detected by Nmap";
+    }
+
+    // Placeholder for Nikto report analysis
+    if (strpos($niktoReport, 'OSVDB') !== false) {
+        $vulnerabilities[] = "Potential vulnerabilities detected by Nikto";
+    }
+
+    // Add more sophisticated analysis here
+
+    return $vulnerabilities;
 }
 ?>
