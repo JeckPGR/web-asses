@@ -135,3 +135,97 @@ Nmap done: 1 IP address (1 host up) scanned in 356.93 seconds
 + /:X-Frame-Options header is deprecated and has been replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
 + /: Link header(s) found with value(s): <https://telkomuniversity.ac.id/wp-json/>; rel="https://api.w.org/", ...
 [2024-09-10 17:48:06] Nikto report generated successfully.
+
+[2024-09-10 17:54:38] Request received: POST method
+[2024-09-10 17:54:38] Starting scan...
+[2024-09-10 17:54:38] Valid URL: https://telkomuniversity.ac.id
+[2024-09-10 17:54:38] Output directory created: C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e06bbe486fd\
+[2024-09-10 17:54:38] Executing Nmap Command: nmap -T4 -p 80,443 --open --script vuln -oN "C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e06bbe486fd\nmap_report.txt" "telkomuniversity.ac.id"
+
+[2024-09-10 18:01:01] Request received: POST method
+[2024-09-10 18:01:01] Starting scan...
+[2024-09-10 18:01:01] Valid URL: https://telkomuniversity.ac.id
+[2024-09-10 18:01:01] Output directory created: C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e06d3d7ec1b\
+[2024-09-10 18:01:01] Executing Nmap Command: nmap -T4 -p 80,443 --open --script vuln -oN "C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e06d3d7ec1b\nmap_report.txt" "telkomuniversity.ac.id"
+[2024-09-10 18:04:13] Nmap Output: Starting Nmap 7.95 ( https://nmap.org ) at 2024-09-10 23:01 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (104.26.14.174)
+Host is up (0.0061s latency).
+Other addresses for telkomuniversity.ac.id (not scanned): 2606:4700:20::681a:fae 2606:4700:20::ac43:4a39 2606:4700:20::681a:eae 172.67.74.57 104.26.15.174
+
+PORT    STATE SERVICE
+80/tcp  open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+443/tcp open  https
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+Nmap done: 1 IP address (1 host up) scanned in 192.12 seconds
+...
+[2024-09-10 18:04:13] Nmap Execution Time: 192 seconds
+[2024-09-10 18:04:13] Nmap report generated successfully.
+[2024-09-10 18:04:13] Executing Nikto Command: perl "C:\nikto\nikto\program\nikto.pl" -h "https://telkomuniversity.ac.id" -Tuning 123 -Cgidirs none -o "C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e06d3d7ec1b\nikto_report.txt"
+[2024-09-10 18:06:23] Nikto Output: - Nikto v2.5.0
+---------------------------------------------------------------------------
++ Multiple IPs found: 104.26.14.174, 172.67.74.57, 104.26.15.174
++ Target IP:          104.26.14.174
++ Target Hostname:    telkomuniversity.ac.id
++ Target Port:        443
+---------------------------------------------------------------------------
++ SSL Info:           Subject:  /CN=telkomuniversity.ac.id
+                      Ciphers:  TLS_AES_256_GCM_SHA384
+                      Issuer:   /C=US/O=Let's Encrypt/CN=E5
++ Start Time:         2024-09-10 23:04:14 (GMT7)
+---------------------------------------------------------------------------
++ Server: cloudflare
++ /:X-Frame-Options header is deprecated and has been replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: Link header(s) found with value(s): <https://telkomuniversity.ac.id/wp-json/>; rel="https://api.w.org/", ...
+[2024-09-10 18:06:23] Nikto report generated successfully.
+[2024-09-10 18:34:26] Request received: POST method
+[2024-09-10 18:34:26] Starting scan...
+[2024-09-10 18:34:26] Valid URL: https://telkomuniversity.ac.id
+[2024-09-10 18:34:26] Output directory created: C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e075125bb42\
+[2024-09-10 18:34:26] Executing Nmap Command: nmap -T4 -p 80,443 --open --script vuln -oN "C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e075125bb42\nmap_report.txt" "telkomuniversity.ac.id"
+[2024-09-10 18:37:53] Request received: POST method
+[2024-09-10 18:37:53] Starting scan...
+[2024-09-10 18:37:53] Valid URL: https://telkomuniversity.ac.id
+[2024-09-10 18:37:53] Output directory created: C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e075e1b1455\
+[2024-09-10 18:37:53] Executing Nmap Command: nmap -T4 -p 80,443 --open --script vuln -oN "C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e075e1b1455\nmap_report.txt" "telkomuniversity.ac.id"
+[2024-09-10 18:41:18] Nmap Output: Starting Nmap 7.95 ( https://nmap.org ) at 2024-09-10 23:37 SE Asia Standard Time
+Nmap scan report for telkomuniversity.ac.id (104.26.15.174)
+Host is up (0.0051s latency).
+Other addresses for telkomuniversity.ac.id (not scanned): 2606:4700:20::681a:fae 2606:4700:20::681a:eae 2606:4700:20::ac43:4a39 104.26.14.174 172.67.74.57
+
+PORT    STATE SERVICE
+80/tcp  open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+443/tcp open  https
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+
+Nmap done: 1 IP address (1 host up) scanned in 205.04 seconds
+...
+[2024-09-10 18:41:18] Nmap Execution Time: 205 seconds
+[2024-09-10 18:41:18] Nmap report generated successfully.
+[2024-09-10 18:41:18] Executing Nikto Command: perl "C:\nikto\nikto\program\nikto.pl" -h "https://telkomuniversity.ac.id" -Tuning 123 -Cgidirs none -o "C:\Users\asus\AppData\Local\Temp\vulnerability_scan_66e075e1b1455\nikto_report.txt"
+[2024-09-10 18:44:10] Nikto Output: - Nikto v2.5.0
+---------------------------------------------------------------------------
++ Multiple IPs found: 172.67.74.57, 104.26.15.174, 104.26.14.174
++ Target IP:          172.67.74.57
++ Target Hostname:    telkomuniversity.ac.id
++ Target Port:        443
+---------------------------------------------------------------------------
++ SSL Info:           Subject:  /CN=telkomuniversity.ac.id
+                      Ciphers:  TLS_AES_256_GCM_SHA384
+                      Issuer:   /C=US/O=Let's Encrypt/CN=E5
++ Start Time:         2024-09-10 23:41:20 (GMT7)
+---------------------------------------------------------------------------
++ Server: cloudflare
++ /:X-Frame-Options header is deprecated and has been replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: Link header(s) found with value(s): <https://telkomuniversity.ac.id/wp-json/>; rel="https://api.w.org/", <...
+[2024-09-10 18:44:10] Nikto report generated successfully.

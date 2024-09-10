@@ -29,26 +29,23 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
     })
     .then(response => response.text()) // Menggunakan .text() untuk mendapatkan respons mentah
     .then(text => {
-        if (text.trim().startsWith('<br />')) {
-            // Respons adalah HTML (kemungkinan error), bukan JSON
-            resultsDiv.innerHTML = "Error: Invalid response from server.";
-            console.error('Server response:', text); // Log untuk debugging
-            return;
+        if (text.trim() === "") {
+            throw new Error("Empty response from server");
         }
-        
         try {
             const data = JSON.parse(text); // Parsing JSON
             if (data.status === 'error') {
                 resultsDiv.innerHTML = data.message;
             } else {
+                // Tampilkan daftar vulnerabilities dengan elemen HTML <ul> dan <li>
                 resultsDiv.innerHTML = `<p>${data.message}</p>`;
             }
         } catch (error) {
             resultsDiv.innerHTML = "Error: Invalid response from server.";
             console.error('Parsing error:', error);
-            console.error('Server response:', text); // Log untuk debugging
+            console.error('Server response:', text); // Tampilkan respons mentah dari server
         }
-    })
+    })    
     .catch(error => {
         console.error('Fetch error:', error);
         resultsDiv.innerHTML = `Error: ${error}`;

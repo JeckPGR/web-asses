@@ -79,7 +79,7 @@ try {
     }
 
  
-    // Never made to this !!
+    
     safeLog("Nmap Output: " . substr($nmapOutput, 0, 1000) . "...");  // Log only first 1000 characters
 
      
@@ -127,7 +127,34 @@ try {
     unlink($niktoOutputFile);
     rmdir($outputDir);
 
-    sendJsonResponse('success', "Scan completed for $hostname. " . count($vulnerabilities) . " potential vulnerabilities found.");
+    $vulnerabilityAnalysis = analyzeReports($nmapReport, $niktoReport);
+    $seriousVulnerabilities = $vulnerabilityAnalysis['seriousVulnerabilities'];
+    $recommendations = $vulnerabilityAnalysis['recommendations'];
+
+    // Prepare the message for serious vulnerabilities
+    $message = "Scan completed for $hostname.<br>";
+    if (count($seriousVulnerabilities) > 0) {
+        $message .= "<p><strong>Serious Vulnerabilities:</strong></p><ul>";
+        foreach ($seriousVulnerabilities as $vuln) {
+            $message .= "<li>" . htmlspecialchars($vuln) . "</li>";
+        }
+        $message .= "</ul>";
+    } else {
+        $message .= "<p>No serious vulnerabilities found.</p>";
+    }
+
+    // Prepare the message for recommendations
+    if (count($recommendations) > 0) {
+        $message .= "<p><strong>Recommendations:</strong></p><ul>";
+        foreach ($recommendations as $rec) {
+            $message .= "<li>" . htmlspecialchars($rec) . "</li>";
+        }
+        $message .= "</ul>";
+    } else {
+        $message .= "<p>No recommendations.</p>";
+    }
+
+    sendJsonResponse('success', $message);
 
 } catch (Exception $e) {
     safeLog("Error: " . $e->getMessage(), 'error.log');
@@ -135,31 +162,50 @@ try {
 }
 
 // Function to analyze reports and return vulnerabilities
-// Function to analyze reports and return vulnerabilities
 function analyzeReports($nmapReport, $niktoReport) {
-    $vulnerabilities = [];
+    $seriousVulnerabilities = [];
+    $recommendations = [];
 
     // Analyze Nmap report for vulnerabilities
     if (strpos($nmapReport, 'VULNERABLE') !== false) {
-        $vulnerabilities[] = "Potential vulnerabilities detected by Nmap";
-    } else {
-        $vulnerabilities[] = "No vulnerabilities detected by Nmap.";
-    }
-
-    // Analyze Nikto report for specific vulnerability indications (e.g., OSVDB)
-    if (strpos($niktoReport, 'OSVDB') !== false) {
-        $niktoLines = explode("\n", $niktoReport);
-        foreach ($niktoLines as $line) {
-            // Find any lines that contain 'OSVDB', which indicates vulnerabilities in Nikto
-            if (strpos($line, 'OSVDB') !== false) {
-                $vulnerabilities[] = $line; // Add each line with vulnerability details to the result
+        $seriousVulnerabilities[] = "Potential vulnerabilities detected by Nmap:";
+        $nmapLines = explode("\n", $nmapReport);
+        foreach ($nmapLines as $line) {
+            if (strpos($line, 'VULNERABLE') !== false) {
+                $seriousVulnerabilities[] = "Nmap: " . trim($line);  // Add Nmap vulnerability line to serious vulnerabilities
             }
         }
     } else {
-        $vulnerabilities[] = "No vulnerabilities detected by Nikto.";
+        $recommendations[] = "No serious vulnerabilities detected by Nmap.";
     }
 
-    return $vulnerabilities;
+    // Analyze Nikto report for vulnerabilities
+    if (strpos($niktoReport, 'OSVDB') !== false) {
+        $seriousVulnerabilities[] = "Potential vulnerabilities detected by Nikto:";
+        $niktoLines = explode("\n", $niktoReport);
+        foreach ($niktoLines as $line) {
+            if (strpos($line, 'OSVDB') !== false) {
+                $seriousVulnerabilities[] = "Nikto: " . trim($line);  // Add Nikto vulnerability line to serious vulnerabilities
+            }
+        }
+    } else {
+        $recommendations[] = "No serious vulnerabilities detected by Nikto.";
+    }
+
+    // Check for recommendations in the Nikto report
+    $niktoLines = explode("\n", $niktoReport);
+    foreach ($niktoLines as $line) {
+        if (strpos($line, 'X-Frame-Options') !== false || strpos($line, 'Link header') !== false) {
+            $recommendations[] = "Nikto recommendation: " . trim($line);  // Add recommendations to the recommendations list
+        }
+    }
+
+    return [
+        'seriousVulnerabilities' => $seriousVulnerabilities,
+        'recommendations' => $recommendations,
+    ];
 }
+
+
 
 ?>
