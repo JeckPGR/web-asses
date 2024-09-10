@@ -1,17 +1,16 @@
 <?php
 // Strict error reporting for development
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 error_reporting(E_ALL);
-
-// Increase execution time limit for long-running scans
-set_time_limit(300);
+set_time_limit(600);
+// Increase execution time limit for long-running scans 
 
 // Function to safely log messages
 function safeLog($message, $logFile = 'debug.log') {
     $logDir = __DIR__ . '/../../logs/';
     if (!file_exists($logDir)) {
-        mkdir($logDir, 0755, true);
+        mkdir($logDir, 0755, true); 
     }
     error_log("[" . date('Y-m-d H:i:s') . "] " . $message . "\n", 3, $logDir . $logFile);
 }
@@ -26,7 +25,7 @@ function sendJsonResponse($status, $message) {
 // Main logic wrapped in a try-catch block
 try {
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        throw new Exception("Method not allowed!");
+        throw new Exception("Hanya terbuka untuk post method");
     }
 
     safeLog("Request received: POST method");
@@ -62,16 +61,30 @@ try {
 
     // Nmap scan
     $nmapOutputFile = $outputDir . 'nmap_report.txt';
-    $nmapCommand = "nmap --script vuln -oN " . escapeshellarg($nmapOutputFile) . " " . escapeshellarg($hostname);
-    
+    // $nmapCommand = "nmap --script vuln -oN " . escapeshellarg($nmapOutputFile) . " " . escapeshellarg($hostname); 
+    // faster demo cek port 80 & 443 lalu --open cuma nampilin port yang kebuka saja
+    $nmapCommand = "nmap -T4 -p 80,443 --open --script vuln -oN " . escapeshellarg($nmapOutputFile) . " " . escapeshellarg($hostname);
+
+
     safeLog("Executing Nmap Command: $nmapCommand");
-    $nmapOutput = shell_exec($nmapCommand . " 2>&1");
+
+ 
+     // Cek Runtime
+     $startTime = time();
+     $nmapOutput = shell_exec($nmapCommand . " 2>&1");
+     $endTime = time();
     
     if ($nmapOutput === null) {
         throw new Exception("Nmap execution failed");
     }
-    
+
+ 
+    // Never made to this !!
     safeLog("Nmap Output: " . substr($nmapOutput, 0, 1000) . "...");  // Log only first 1000 characters
+
+     
+   
+       safeLog("Nmap Execution Time: " . ($endTime - $startTime) . " seconds");
 
     if (!file_exists($nmapOutputFile)) {
         throw new Exception("Nmap report not generated");
@@ -81,9 +94,13 @@ try {
     safeLog("Nmap report generated successfully.");
 
     // Nikto scan
-    $niktoPath = 'C:\\Users\\asus\\Downloads\\nikto\\nikto\\program\\nikto.pl';
+    $niktoPath = 'C:\\nikto\\nikto\\program\\nikto.pl';
     $niktoOutputFile = $outputDir . 'nikto_report.txt';
-    $niktoCommand = "perl " . escapeshellarg($niktoPath) . " -h " . escapeshellarg($url) . " -o " . escapeshellarg($niktoOutputFile);
+    // $niktoCommand = "perl " . escapeshellarg($niktoPath) . " -h " . escapeshellarg($url) . " -o " . escapeshellarg($niktoOutputFile);
+
+    //new command for now idk
+    $niktoCommand = "perl " . escapeshellarg($niktoPath) . " -h " . escapeshellarg($url) . " -Tuning 123 -Cgidirs none -o " . escapeshellarg($niktoOutputFile);
+
     
     safeLog("Executing Nikto Command: $niktoCommand");
     $niktoOutput = shell_exec($niktoCommand . " 2>&1");
@@ -118,21 +135,31 @@ try {
 }
 
 // Function to analyze reports and return vulnerabilities
+// Function to analyze reports and return vulnerabilities
 function analyzeReports($nmapReport, $niktoReport) {
     $vulnerabilities = [];
 
-    // Placeholder for Nmap report analysis
+    // Analyze Nmap report for vulnerabilities
     if (strpos($nmapReport, 'VULNERABLE') !== false) {
         $vulnerabilities[] = "Potential vulnerabilities detected by Nmap";
+    } else {
+        $vulnerabilities[] = "No vulnerabilities detected by Nmap.";
     }
 
-    // Placeholder for Nikto report analysis
+    // Analyze Nikto report for specific vulnerability indications (e.g., OSVDB)
     if (strpos($niktoReport, 'OSVDB') !== false) {
-        $vulnerabilities[] = "Potential vulnerabilities detected by Nikto";
+        $niktoLines = explode("\n", $niktoReport);
+        foreach ($niktoLines as $line) {
+            // Find any lines that contain 'OSVDB', which indicates vulnerabilities in Nikto
+            if (strpos($line, 'OSVDB') !== false) {
+                $vulnerabilities[] = $line; // Add each line with vulnerability details to the result
+            }
+        }
+    } else {
+        $vulnerabilities[] = "No vulnerabilities detected by Nikto.";
     }
-
-    // Add more sophisticated analysis here
 
     return $vulnerabilities;
 }
+
 ?>

@@ -18,6 +18,7 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
     }
 
     resultsDiv.innerHTML = "Scanning...";
+ 
 
     fetch('../src/api/scan.php', {
         method: 'POST',
@@ -26,27 +27,31 @@ document.getElementById('scanForm').addEventListener('submit', function(e) {
         },
         body: `url=${encodeURIComponent(url)}`,
     })
-    .then(response => response.text()) // Use .text() to get raw response
+    .then(response => response.text()) // Menggunakan .text() untuk mendapatkan respons mentah
     .then(text => {
+        if (text.trim().startsWith('<br />')) {
+            // Respons adalah HTML (kemungkinan error), bukan JSON
+            resultsDiv.innerHTML = "Error: Invalid response from server.";
+            console.error('Server response:', text); // Log untuk debugging
+            return;
+        }
+        
         try {
-            const data = JSON.parse(text); // Attempt to parse JSON
+            const data = JSON.parse(text); // Parsing JSON
             if (data.status === 'error') {
-                console.error(data.message);
                 resultsDiv.innerHTML = data.message;
             } else {
-                console.log(data.message);
                 resultsDiv.innerHTML = `<p>${data.message}</p>`;
             }
         } catch (error) {
+            resultsDiv.innerHTML = "Error: Invalid response from server.";
             console.error('Parsing error:', error);
-            console.error('Server response:', text); // Log the raw response for debugging
-            resultsDiv.innerHTML = `Error: Invalid response from server.`;
+            console.error('Server response:', text); // Log untuk debugging
         }
     })
     .catch(error => {
         console.error('Fetch error:', error);
         resultsDiv.innerHTML = `Error: ${error}`;
     });
-    
     
 });
